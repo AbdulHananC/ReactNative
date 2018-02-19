@@ -7,6 +7,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import Splash from './Splash';
 
 
 
