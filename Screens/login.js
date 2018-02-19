@@ -13,25 +13,25 @@ import {
 import Dashboard from './Dashboard';
 import Splash from './Splash';
 import Signup from './signup';
+
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = { logIn: false};
-        // var loGin = this.state.logIn;
         this.state = { userName: '' };
         this.state = { passWord: '' };
         this.displayData = this.displayData.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
+   
 
 
 
 
     }
 
-
-
     handleChangeText(username, password, logIn) {
-
+        
+ 
+    
         user = this.state.userName;
         AsyncStorage.user = JSON.stringify(user);
         AsyncStorage.setItem('user', user);
@@ -49,21 +49,15 @@ export default class Login extends React.Component {
         
         this.displayData();
         
-        
-        // var loGin = this.state.logIn;
-        //this.state.logIn = true;
+
     }
     
     async displayData() {
-        try {
+       
             
             let user = await AsyncStorage.getItem('user');
             let pass = await AsyncStorage.getItem('pass');
             
-            // this.props.navigation.push({
-                //     id: 'Dashboard'
-                // });
-                // navigate("Dashboard", { screen: "Dashboard" })
                 if (user !== User) {
                     alert('try again');
                 }
@@ -79,18 +73,15 @@ export default class Login extends React.Component {
             }
 
         }
-        catch (error) {
-            alert(error);
-        }
-    }
+       
+    
 
     static navigationOptions = {
         title: "Sign In"
     }
     render() {
         const { navigate } = this.props.navigation;
-        // const { params } = this.props.navigation.state;
-        // const loGin = params ? params.loGin : loGin;
+
         return (
             <View style={styless.container}>
                 <TextInput style={styless.textin}
@@ -99,6 +90,9 @@ export default class Login extends React.Component {
                 />
                 <TextInput style={styless.textin}
                     placeholder="Enter password"
+                    secureTextEntry = {true}
+                    maxLength = {40}
+                    minLength = {5}
                     onChangeText={(password) => this.setState({ passWord: password })}
                 />
 

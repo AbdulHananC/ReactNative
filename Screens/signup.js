@@ -13,14 +13,16 @@ export default class Signup extends React.Component {
         super(props);
         this.state = { USERName: '' };
         this.state = { PASSWord: '' };
+        this.state = {multi:[]};
         this.handleChangeText1 = this.handleChangeText1.bind(this);
 
         
     }
 
-      handleChangeText1(username,password) {
-          
-        
+    async  handleChangeText1(username,password) {
+           
+
+        for(i = 0; i<= this.state.multi.length; i++){
               
           
         User = this.state.USERName;
@@ -33,9 +35,16 @@ export default class Signup extends React.Component {
         
         this.setState({ USERName: '' })
         this.setState({ PASSWord: '' })
-        console.log("signup"+User+Pass)
-
+        this.state.multi.push({
+            USERName : this.state.USERName,
+            PASSWord : this.state.PASSWord
+        });
+        await AsyncStorage.setItem('multi',JSON.stringify(this.state.multi))
+        // multi = JSON.parse(AsyncStorage.getItem('multi'));
+        console.log("signup "+this.state.multi[i].USERName)
         this.props.navigation.navigate('Login');
+        break;
+    }
 }
     static navigationOptions = {
         title: "Sign up"
@@ -46,13 +55,16 @@ export default class Signup extends React.Component {
         return (
             <View style={styless.container}>
                 <TextInput style={styless.textin}
-                    placeholder="Enter username"
+                    placeholder="Enter Email"
                     onChangeText={(username) => this.setState({ USERName: username })}
                     value = {this.state.USERName}
                 
                 />
                 <TextInput style={styless.textin}
                     placeholder="Enter password"
+                    secureTextEntry = {true}
+                    maxLength = {40}
+                    minLength = {5}
                     onChangeText={(password) => this.setState({ PASSWord: password })}
                     value = {this.state.PASSWord}
                 />
