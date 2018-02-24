@@ -7,28 +7,21 @@ import {
   AsyncStorage
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Splash from './Splash';
+import { DrawerNavigator } from 'react-navigation';
 
 
 
-export default class Dashboard extends React.Component {
+
+export default class Drawer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { logIn: 'false' };
-    loGin = this.state.logIn;
-    AsyncStorage.loGin = JSON.stringify(loGin);
-    AsyncStorage.setItem('loGin', loGin);
+
 
   }
   static navigationOptions = {
-    title: "Dashboard"
+    DrawerLable: "Drawer"
   }
-  logout() {
-    this.state = { logIn: 'false' };
-    loGin = this.state.logIn;
-    this.props.navigation.navigate('Splash');
 
-  }
   render() {
 
 
@@ -36,10 +29,8 @@ export default class Dashboard extends React.Component {
     const { navigate } = this.props.navigation
     return (
       <View style={styless.container}>
-        <Text style={styless.text}>Dashboard</Text>
-        <Button
-          onPress={this.logout.bind(this)}
-          title='Log out' />
+        <Text style={styless.text}>Drawer</Text>
+    
       </View>
     )
   }
@@ -52,6 +43,7 @@ const styless = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
+    fontSize: 50,
     color: 'black',
     alignItems: 'center',
     justifyContent: 'center',

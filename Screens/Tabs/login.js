@@ -10,8 +10,8 @@ import {
     Text
 } from 'react-native';
 
-import Dashboard from './Dashboard';
-import Splash from './Splash';
+import Dashboard from '../Drawers/Dashboard';
+import Splash from '../Stacks/Splash';
 import Signup from './signup';
 
 export default class Login extends React.Component {

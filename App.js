@@ -15,12 +15,32 @@ import { Text,
   StyleSheet, 
   Button,
   AsyncStorage  } from 'react-native';
+  import { TabNavigator } from 'react-navigation';
 import { StackNavigator } from 'react-navigation';
+import { DrawerNavigator } from 'react-navigation';
+import Dashboard from './Screens/Drawers/Dashboard';
+import Splash from './Screens/Stacks/Splash';
+import Login from './Screens/Tabs/login';
+import Signup from './Screens/Tabs/signup';
+import Drawer from './Screens/Drawers/drawer';
 
-import Dashboard from './Screens/Dashboard';
-import Splash from './Screens/Splash';
-import Login from './Screens/login';
-import Signup from './Screens/signup';
+const TabApp = TabNavigator({
+  Login: {
+    screen: Login
+  },
+  Signup: {
+    screen: Signup
+  },
+})
+
+const DrawerNavigation = DrawerNavigator({
+  Dashboard: {
+    screen: Dashboard
+  },
+  Drawer:{
+    screen: Drawer
+  },
+})
 
 const StackApp = StackNavigator({
 
@@ -28,13 +48,10 @@ const StackApp = StackNavigator({
     screen: Splash
   },
   Login: {
-    screen: Login
-  },
-  Signup: {
-    screen: Signup
+    screen: TabApp
   },
   Dashboard: {
-    screen: Dashboard
+    screen: DrawerNavigation
   }
 })
 export default class extends React.Component {
@@ -49,6 +66,7 @@ export default class extends React.Component {
 
       <View style={styless.container}>
         <StackApp />
+        {/* <DrawerNavigation /> */}
       </View>
     );
   }

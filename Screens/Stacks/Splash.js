@@ -9,17 +9,17 @@ import {
   AsyncStorage
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Login from './login';
-import Signup from './signup';
-import Dashboard from './Dashboard';
-import App from '../App';
+import Login from '../Tabs/login';
+import Signup from '../Tabs/signup';
+import Dashboard from '../Drawers/Dashboard';
+// import App from '../App';
 
 export default class Splash extends React.Component {
   constructor(props) {
     super(props);
 
     this.logDecider = this.logDecider.bind(this);
-
+  
 
   }
   async logDecider() {
@@ -29,10 +29,11 @@ export default class Splash extends React.Component {
       if (loGin === 'false') {
         this.props.navigation.navigate('Login');
       }
-      else if (loGin === 'true') {
+      else if (loGin !== 'false') {
         this.props.navigation.navigate('Dashboard');
       }
       else {
+        this.props.navigation.navigate('Dashboard');
         alert('error')
       }
     }
@@ -65,6 +66,7 @@ const styless = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
+    fontSize: 20,
     color: 'black',
     alignItems: 'center',
     justifyContent: 'center',
